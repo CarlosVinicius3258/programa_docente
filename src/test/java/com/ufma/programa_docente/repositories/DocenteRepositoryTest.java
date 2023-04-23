@@ -1,5 +1,7 @@
 package com.ufma.programa_docente.repositories;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Optional;
 
@@ -67,9 +69,29 @@ public class DocenteRepositoryTest {
         Optional optionalFromDb = repository.findById(saved.getId_docente());
         Docente docenteFromDb = (Docente) optionalFromDb.orElse(null);
 
-
         //verification
         Assertions.assertNull(docenteFromDb);
+
+    }
+
+    @Test
+    public void shouldGetAllDocentes() {
+        //context
+        Docente docente = Docente.builder().name("César").data(new Date()).build();
+        Docente docente2 = Docente.builder().name("Carlos").data(new Date()).build();
+
+        //action
+        repository.save(docente);
+        repository.save(docente2);
+
+        Iterable<Docente> docentes = repository.findAll();
+    
+
+        //verification
+        Assertions.assertNotNull(docentes);
+        Assertions.assertEquals(2, ((Collection<?>) docentes).size());
+        
+
 
     }
     
