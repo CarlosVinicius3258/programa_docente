@@ -11,6 +11,8 @@ import com.ufma.programa_docente.entities.Docente;
 import com.ufma.programa_docente.services.DocenteService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -27,6 +29,12 @@ public class DocenteResource {
 
         return ResponseEntity.ok().body(list);
 
+    }
+
+    @PostMapping
+    public ResponseEntity<Docente> save(@RequestBody Docente docente) {
+        docente = docenteDAO. save(docente);
+        return ResponseEntity.ok().body(docente);
     }
 
     @GetMapping(value = "/{id}")

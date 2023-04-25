@@ -60,6 +60,7 @@ public class DocenteRepositoryTest {
     @Test
     public void shouldRemoveDocente() {
         //context 
+        
         Docente docente = Docente.builder().name("César").data(new Date()).build();
 
         //action

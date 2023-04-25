@@ -22,9 +22,15 @@ public class DocenteService {
     };
 
     @Transactional(readOnly = true)
-    public Docente findById(Integer id){
+    public Docente findById(Integer id) {
         Optional<Docente> docenteOptional = docenteDAO.findById(id);
         Docente docente = docenteOptional.get();
+        return docente;
+    }
+
+    @Transactional(readOnly = false)
+    public Docente save(Docente docente) {
+        docente = docenteDAO.save(docente);
         return docente;
     }
 
